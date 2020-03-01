@@ -1,22 +1,17 @@
-def value_at_risk(returns, confidence_level=.05):
+def value_at_risk(assets_returns, confidence_level=.05):
 	"""
 	It calculates the Value at Risk (VaR) of some time series. It represents 
 	the maximum loss with the given confidence level.
 	
-	Parameters
-	----------
-	returns : pandas.DataFrame
-		Returns of each time serie. It could be daily, weekly, monthly, ...
-		
-	confidence_level : int
-		Confidence level. 5% by default.
-			
-	Returns
-	-------
-	var : pandas.Series
-		Value at Risk for each time series.
+	:param pandas.DataFrame assets_returns: Returns of each asset. It could be daily, weekly, monthly, ...
+	:param int confidence_level: Confidence level. 5% by default.
+	
+	:return var: Value at Risk for each asset.
+	:rtype: pandas.Series
 	
 	"""
 	
 	# Calculating VaR
-	return returns.quantile(confidence_level, axis=0, interpolation='higher')
+	var =  assets_returns.quantile(confidence_level, axis=0, interpolation='higher')
+	
+	return var
